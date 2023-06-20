@@ -5,7 +5,8 @@
   "version": "1.0.4",
   "scripts": {
     "dev": "shopify hydrogen dev",
-    "build": "shopify hydrogen build",
+    "build": "shopify hydrogen build && npm run prepare:output",
+    "prepare:output": "rm -rf .vercel/output && cp -r output-template .vercel/output && cp -r dist/client/* .vercel/output/static && cp dist/worker/index.js .vercel/output/functions/hydrogen.func/",
     "preview": "npm run build && shopify hydrogen preview",
     "lint": "eslint --no-error-on-unmatched-pattern --ext .js,.ts,.jsx,.tsx .",
     "format": "prettier --write --ignore-unknown .",
